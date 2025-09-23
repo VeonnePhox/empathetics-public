@@ -1,0 +1,7 @@
+title: Empathetics
+description: AI-driven Virtual Patients for education, clinical training, and research
+baseurl: "" 
+url: "https://www.playfulhealth.com.au"
+
+plugins:
+  - jekyll-sitemap

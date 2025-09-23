@@ -8,3 +8,10 @@ git push -u origin main
 
 # update git
 git status
+git add .
+git commit -m "comments"
+git push origin main 
+
+** change main if you want a different branch
+
+VeonnePhox.github.io
