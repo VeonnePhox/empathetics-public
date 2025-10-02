@@ -9,6 +9,24 @@
   <!-- Tailwind + Preline -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/preline/dist/preline.js"></script>
+
+  <style>
+    /* Add colours and groups here */
+    :root {
+      --brand: #5DCEAF;      /* teal */
+      --brand-dark: #47a88c; /* teal hover */
+      --secondary: #C830CC;  /* purple */
+      --teritary: #ED7D31;     /* orange */
+      --indigo: rgb(70,62,144);
+    }
+    .bg-brand        { background-color: var(--brand); }
+    .bg-brand-dark   { background-color: var(--brand-dark); }
+    .text-brand      { color: var(--brand); }
+    .bg-secondary    { background-color: var(--secondary); }
+    .text-secondary  { color: var(--secondary); }
+    .text-teritary    { color: var(--teritary); }
+  </style>
+</head>
 </head>
 <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
 

@@ -1,0 +1,8 @@
+# Gemfile
+source "https://rubygems.org"
+
+# Use the same Jekyll stack GitHub Pages uses
+gem "github-pages", group: :jekyll_plugins
+
+# Explicit plugin you listed in _config.yml
+gem "jekyll-sitemap"
