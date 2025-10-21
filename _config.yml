@@ -5,3 +5,10 @@ url: "https://www.playfulhealth.com.au"
 
 plugins:
   - jekyll-sitemap
+
+markdown: kramdown
+kramdown:
+  input: GFM  
+
+include:
+  - pages

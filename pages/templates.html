@@ -1,0 +1,113 @@
+---
+layout: default
+title: Typography & Style Templates
+description: Empathetics branding and text styles reference
+permalink: /template/
+---
+
+<section class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+  <!-- Page Title -->
+  <header class="border-b border-gray-200 dark:border-neutral-700 pb-6 mb-8">
+    <h1 class="heading-1">Empathetics Style Templates</h1>
+    <p class="body-text">
+      A live reference page showcasing text styles, colours, and formatting conventions used across Empathetics pages.
+    </p>
+  </header>
+
+  <!-- Headings Preview -->
+  <section>
+    <h2 class="heading-2">Headings</h2>
+    <div class="space-y-3 border-l-4 border-brand pl-4">
+      <h1 class="heading-1">Heading 1 – Used for Page Titles</h1>
+      <h2 class="heading-2">Heading 2 – Section Titles</h2>
+      <h3 class="heading-3">Heading 3 – Subsections or Key Ideas</h3>
+    </div>
+  </section>
+
+  <!-- Paragraphs -->
+  <section>
+    <h2 class="heading-2">Body Text</h2>
+    <p class="body-text">
+      The <strong>.body-text</strong> class provides consistent paragraph spacing and colour, with automatic dark mode support.
+    </p>
+    <p class="body-text">
+      Example: <strong>Empathetics</strong> connects simulation-based learning with institutional LMS platforms, enabling educators to deliver 
+      <em>high-fidelity, interactive, and reflective learning experiences</em> at scale.
+    </p>
+  </section>
+
+  <!-- Lists -->
+  <section>
+    <h2 class="heading-2">Lists</h2>
+    <div class="grid sm:grid-cols-2 gap-8">
+      <div>
+        <h3 class="heading-3">Unordered List (.list-default)</h3>
+        <ul class="list-default">
+          <li>Supports Moodle, Blackboard, Canvas, and Brightspace</li>
+          <li>Automatic Single Sign-On (SSO)</li>
+          <li>Secure OAuth2 + JWT authentication</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="heading-3">Ordered List</h3>
+        <ol class="list-decimal pl-6 space-y-1 text-gray-700 dark:text-gray-300">
+          <li>Provide LMS credentials</li>
+          <li>Verify and test integration</li>
+          <li>Deploy simulations to course modules</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section>
+    <h2 class="heading-2">Blockquote (.quote)</h2>
+    <blockquote class="quote">
+      “We don’t replace your LMS — we extend it.”<br>
+      Empathetics integrates where your learners already are, enhancing communication and empathy training.
+    </blockquote>
+  </section>
+
+  <!-- Colours -->
+  <section>
+    <h2 class="heading-2">Brand Colours</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-brand"></div>
+        <p class="body-text text-center">Brand<br><span class="text-sm text-gray-500 dark:text-gray-400">#5DCEAF</span></p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-brand-dark"></div>
+        <p class="body-text text-center">Brand Dark<br><span class="text-sm text-gray-500 dark:text-gray-400">#47A88C</span></p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-secondary"></div>
+        <p class="body-text text-center">Secondary<br><span class="text-sm text-gray-500 dark:text-gray-400">#C830CC</span></p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-[var(--teritary)]"></div>
+        <p class="body-text text-center">Tertiary<br><span class="text-sm text-gray-500 dark:text-gray-400">#ED7D31</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <hr>
+
+  <!-- Reference & Instructions -->
+  <footer>
+    <h2 class="heading-2">How to Update or Extend Styles</h2>
+    <ol class="list-decimal pl-6 body-text">
+      <li><strong>Colours:</strong> Defined in <code>:root</code> inside <code>_layouts/default.html</code>. Add or modify any <code>--brand</code> variable, then reference with <code>bg-[var(--newcolor)]</code> or <code>text-[var(--newcolor)]</code>.</li>
+      <li><strong>Typography:</strong> Classes like <code>.heading-1</code>, <code>.heading-2</code>, and <code>.body-text</code> are also declared in <code>default.html</code> under “Formatting styles”. Move these into <code>/assets/css/typography.css</code> for site-wide use if preferred.</li>
+      <li><strong>Usage:</strong> Use the custom classes when writing content, e.g.  
+        <code>&lt;h1 class="heading-1"&gt;Page Title&lt;/h1&gt;</code> or  
+        <code>&lt;p class="body-text"&gt;Paragraph content&lt;/p&gt;</code>.</li>
+      <li><strong>Dark Mode:</strong> All styles support the <code>.dark</code> class automatically. Test with your browser’s dark mode toggle.</li>
+    </ol>
+    <p class="body-text mt-4">
+      Keep this page as a live visual reference when formatting new content.  
+      If new design tokens or layouts are added, update this template to stay aligned.
+    </p>
+  </footer>
+</section>

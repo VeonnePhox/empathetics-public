@@ -10,6 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/preline/dist/preline.js"></script>
 
+  <!-- Colours and groups -->
   <style>
     /* Add colours and groups here */
     :root {
@@ -26,29 +27,175 @@
     .text-secondary  { color: var(--secondary); }
     .text-teritary    { color: var(--teritary); }
   </style>
-</head>
+
+<!-- Formatting styles -->
+  <style>
+    .heading-1 {
+      font-size: 1.875rem; /* text-3xl */
+      font-weight: 700;    /* font-bold */
+      margin-bottom: 1rem; /* mb-4 */
+      color: #111827;      /* gray-900 */
+    }
+    .dark .heading-1 {
+      color: #ffffff;
+    }
+    
+    .heading-2 {
+      font-size: 1.875rem;   /* text-2xl */
+      font-weight: 700;    /* font-semibold */
+      margin-bottom: 0.75rem;
+      color: #C830CC;      /* gray-800 */
+    }
+    .dark .heading-2 {
+      color: #f3f4f6;
+    }
+    
+    .heading-3 {
+      font-size: 1.25rem;  /* text-xl */
+      font-weight: 500;    /* font-medium */
+      margin-bottom: 0.5rem;
+      color: #374151;      /* gray-700 */
+    }
+    .dark .heading-3 {
+      color: #d1d5db;
+    }
+    
+    .body-text {
+      color: #374151;      /* gray-700 */
+      margin-bottom: 1rem;
+      line-height: 1.625;  /* leading-relaxed */
+    }
+    .dark .body-text {
+      color: #d1d5db;
+    }
+    
+    .list-default {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #374151;
+      line-height: 1.625;
+    }
+    .dark .list-default {
+      color: #d1d5db;
+    }
+    
+    .quote {
+      border-left: 4px solid var(--brand, #5DCEAF);
+      padding-left: 1rem;
+      font-style: italic;
+      color: #4b5563; /* gray-600 */
+      margin-bottom: 1.5rem;
+    }
+    .dark .quote {
+      color: #9ca3af;
+    }
+    
+    hr {
+      margin: 2rem 0;
+      border-color: #e5e7eb; /* gray-200 */
+    }
+    .dark hr {
+      border-color: #374151; /* neutral-700 */
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
 
   <!-- Navbar -->
-  <header class="bg-white shadow">
+  <!-- <header class="bg-white shadow">
     <nav class="max-w-7xl mx-auto flex justify-between items-center p-4">
       <a href="/" class="text-xl font-bold text-indigo-600">Empathetics</a>
       <ul class="flex gap-6">
-        <li><a href="/research.html" class="hover:text-indigo-600">Research</a></li>
+        <li><a href="/research/" class="hover:text-indigo-600">Research</a></li>
         <li><a href="/clinical.html" class="hover:text-indigo-600">Clinical</a></li>
       </ul>
     </nav>
-  </header>
+  </header> -->
 
   <!-- Page content -->
   <main class="flex-1 max-w-7xl mx-auto w-full p-6">
-    {{ content }}
+        {{ content }}
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 text-center py-4 mt-6">
-    <p>&copy; 2025 Empathetics by Playful Health Pty Ltd</p>
-  </footer>
+<!-- ========== FOOTER ========== -->
+<footer class="mt-auto bg-gray-900 w-full dark:bg-neutral-950">
+  <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
+
+    <!-- Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <!-- Brand -->
+      <div class="col-span-full lg:col-span-1">
+        <a href="/" class="flex-none text-xl font-semibold text-white focus:outline-hidden focus:opacity-80" aria-label="Empathetics">
+          Empathetics
+        </a>
+        <p class="mt-2 text-sm text-gray-400">
+          by Playful Health
+        </p>
+      </div>
+
+      <!-- Product Features -->
+      <div class="col-span-1">
+        <h4 class="font-semibold text-gray-100">Platform</h4>
+        <div class="mt-3 grid space-y-3">
+          <p><a href="https://empathetics03.fly.dev/" class="text-gray-400 hover:text-gray-200">Demo</a></p>
+          <p><a href="/lms/" class="text-gray-400 hover:text-gray-200">LMS Integrations</a></p>
+          <!-- <p><a href="/template/" class="text-gray-400 hover:text-gray-200">template</a></p> -->
+        </div>
+      </div>
+
+      <!-- Company / Partnerships -->
+      <div class="col-span-1">
+        <h4 class="font-semibold text-gray-100">Partnerships</h4>
+        <div class="mt-3 grid space-y-3">
+          <p><a href="/about/" class="text-gray-400 hover:text-gray-200">About Us</a></p>
+          <p><a href="/support/" class="text-gray-400 hover:text-gray-200">Implementation</a></p>
+          <p><a href="mailto:hello@playfulhealth.com.au" class="text-gray-400 hover:text-gray-200">Contact</a></p>
+        </div>
+      </div>
+
+      <!-- Subscribe -->
+      <div class="col-span-2">
+        <h4 class="font-semibold text-gray-100">Stay in the loop</h4>
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2 dark:bg-neutral-900">
+            <div class="w-full">
+              <label for="subscribe-email" class="sr-only">Email</label>
+              <input type="email" id="subscribe-email" name="email"
+                     class="py-2.5 sm:py-3 px-4 block w-full border-transparent rounded-lg sm:text-sm focus:border-brand focus:ring-brand disabled:opacity-50 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500"
+                     placeholder="Enter your email" required>
+            </div>
+            <button type="submit"
+                    class="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-brand text-white hover:bg-brand-dark focus:outline-hidden">
+              Subscribe
+            </button>
+          </div>
+          <p class="mt-3 text-sm text-gray-400">
+            Occasional updates on research and features. No spam.
+          </p>
+        </form>
+      </div>
+    </div>
+    <!-- End Grid -->
+
+    <!-- Bottom -->
+    <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-between items-center gap-y-4">
+      <p class="text-sm text-gray-400">
+        © 2025 Empathetics by Playful Health Pty Ltd. All rights reserved.
+      </p>
+
+      <!-- Social Icons -->
+      <div class="flex gap-2">
+        <a href="https://linkedin.com/company/playfulhealth" class="size-10 inline-flex justify-center items-center rounded-lg text-white hover:bg-white/10" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 16 16"><path d="M1.146 1.146a.5.5 0 0 1 .708 0L8 7.293l6.146-6.147a.5.5 0 0 1 .708.708L8.707 8l6.147 6.146a.5.5 0 0 1-.708.708L8 8.707l-6.146 6.147a.5.5 0 0 1-.708-.708L7.293 8 1.146 1.854a.5.5 0 0 1 0-.708z"/></svg>
+        </a>
+        <a href="https://x.com/playful_health" class="size-10 inline-flex justify-center items-center rounded-lg text-white hover:bg-white/10" aria-label="X/Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 16 16"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518A3.301 3.301 0 0 0 13.564 2a6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03 9.325 9.325 0 0 1 1.108 2.6 3.289 3.289 0 0 0 2.125 6.98a3.323 3.323 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ========== END FOOTER ========== -->
 </body>
 </html>
