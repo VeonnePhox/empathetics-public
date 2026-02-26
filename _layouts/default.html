@@ -36,8 +36,9 @@
       margin-bottom: 1rem; /* mb-4 */
       color: #111827;      /* gray-900 */
     }
-    .dark .heading-1 {
-      color: #ffffff;
+    /* Dark mode via system preference */
+    @media (prefers-color-scheme: dark) {
+      .heading-1 { color: #ffffff; }
     }
     
     .heading-2 {
@@ -46,8 +47,8 @@
       margin-bottom: 0.75rem;
       color: #C830CC;      /* gray-800 */
     }
-    .dark .heading-2 {
-      color: #f3f4f6;
+    @media (prefers-color-scheme: dark) {
+      .heading-2 { color: #f3f4f6; }
     }
     
     .heading-3 {
@@ -56,8 +57,8 @@
       margin-bottom: 0.5rem;
       color: #374151;      /* gray-700 */
     }
-    .dark .heading-3 {
-      color: #d1d5db;
+    @media (prefers-color-scheme: dark) {
+      .heading-3 { color: #d1d5db; }
     }
     
     .body-text {
@@ -65,8 +66,8 @@
       margin-bottom: 1rem;
       line-height: 1.625;  /* leading-relaxed */
     }
-    .dark .body-text {
-      color: #d1d5db;
+    @media (prefers-color-scheme: dark) {
+      .body-text { color: #d1d5db; }
     }
     
     .list-default {
@@ -76,8 +77,8 @@
       color: #374151;
       line-height: 1.625;
     }
-    .dark .list-default {
-      color: #357fef;
+    @media (prefers-color-scheme: dark) {
+      .list-default { color: #d1d5db; }
     }
     
     .quote {
@@ -87,16 +88,22 @@
       color: #4b5563; /* gray-600 */
       margin-bottom: 1.5rem;
     }
-    .dark .quote {
-      color: #9ca3af;
+    @media (prefers-color-scheme: dark) {
+      .quote { color: #9ca3af; }
     }
     
     hr {
       margin: 2rem 0;
       border-color: #e5e7eb; /* gray-200 */
     }
-    .dark hr {
-      border-color: #374151; /* neutral-700 */
+    @media (prefers-color-scheme: dark) {
+      hr { border-color: #374151; /* neutral-700 */ }
+    }
+
+    /* Support custom utilities used with Tailwind-style dark: prefix */
+    @media (prefers-color-scheme: dark) {
+      .dark\:text-teritary { color: var(--teritary); }
+      .dark\:text-brand { color: var(--brand); }
     }
   </style>
 </head>
