@@ -1,7 +1,7 @@
 title: Empathetics
-description: AI-powered clinical simulations for education, training, and public access through Clinichat
-baseurl: "" 
-url: "https://www.playfulhealth.com.au"
+description: Simulation practice and feedback for professional education providers.
+baseurl: ""
+url: "https://empathetics.ai"
 
 plugins:
   - jekyll-sitemap

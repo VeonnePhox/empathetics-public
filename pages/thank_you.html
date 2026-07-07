@@ -1,39 +1,27 @@
 ---
 layout: default
-title: About Empathetics
+title: Thanks
 permalink: /thank_you/
+seo_title: Thanks | Empathetics
+seo_description: Thanks for reaching out to Empathetics. We will follow up about your pilot or partnership enquiry.
 ---
-<section class="max-w-6xl mx-auto px-6 py-24">
-  <div class="max-w-3xl mx-auto text-center">
+{% assign sc = site.data.site %}
 
-    <!-- Hero -->
-    <h1 class="text-4xl md:text-5xl font-semibold mb-6 text-gray-900">
-      Thanks — you’re on the list
-    </h1>
-
-    <p class="text-lg text-gray-700 mb-10">
-      You’ve successfully signed up to receive updates about <strong>Empathetics</strong>.
-      We’ll share occasional news, new case releases, and opportunities to explore Clinichat and Empathetics —
-      no spam, no noise.
+<section class="section-shell">
+  <div class="mx-auto max-w-3xl text-center">
+    <p class="eyebrow mb-4">Thanks</p>
+    <h1 class="section-title">Thanks for reaching out.</h1>
+    <p class="section-subtitle mt-6">
+      Your enquiry is with the Empathetics team. We will follow up about your pilot, partnership, or implementation conversation as soon as we can.
     </p>
 
-    <!-- Primary CTA -->
-    <div class="flex justify-center gap-4 flex-wrap">
-      <a href="/"
-         class="inline-block rounded-lg bg-secondary px-6 py-3 text-white shadow transition hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">
-        Back to Empathetics
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="/" class="inline-flex items-center rounded-full bg-brand px-6 py-3 text-base font-extrabold text-white transition hover:bg-brand-dark">
+        Back to the homepage
       </a>
-
-      <a href="mailto:hello@playfulhealth.com.au?subject=Empathetics%20Enquiry"
-         class="inline-block rounded-lg border border-secondary px-6 py-3 text-secondary transition hover:bg-secondary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">
-        Enquire About Empathetics
+      <a href="mailto:{{ sc.contactEmail }}" class="inline-flex items-center rounded-full border border-slate-300 px-6 py-3 text-base font-bold text-slate-900 transition hover:bg-white">
+        Email {{ sc.contactEmail }}
       </a>
     </div>
-
-    <!-- Subtle reassurance -->
-    <p class="mt-12 text-sm text-gray-500">
-      You can unsubscribe at any time. We respect your inbox.
-    </p>
-
   </div>
 </section>

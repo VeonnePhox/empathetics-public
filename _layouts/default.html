@@ -1,52 +1,77 @@
+{% assign sc = site.data.site %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }} · {{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
+  <title>{% if page.title and page.title != "Home" %}{{ page.title }} | {{ sc.siteName }}{% else %}{{ sc.defaultSeoTitle }}{% endif %}</title>
+  <meta name="description" content="{{ page.seo_description | default: sc.defaultSeoDescription }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light only">
-  <meta name="theme-color" content="#f9fafb">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="{{ page.seo_title | default: sc.defaultSeoTitle }}">
+  <meta property="og:description" content="{{ page.seo_description | default: sc.defaultSeoDescription }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ sc.siteUrl }}{{ page.url }}">
+  <meta property="og:image" content="{{ sc.siteUrl }}{{ sc.defaultImage }}">
+  <link rel="canonical" href="{{ sc.siteUrl }}{{ page.url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Tailwind + Preline -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/preline/dist/preline.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+            serif: ["Fraunces", "ui-serif", "Georgia", "serif"]
+          },
+          colors: {
+            brand: {
+              DEFAULT: "#2AA889",
+              dark: "#1E7C66",
+              soft: "#CDEFE6"
+            },
+            ink: "#0F172A",
+            mist: "#E8F1F6",
+            sand: "#FFF4DE"
+          },
+          boxShadow: {
+            panel: "0 18px 48px rgba(15, 23, 42, 0.10)"
+          }
+        }
+      }
+    };
+  </script>
 
-  <!-- Colours and groups -->
   <style>
-    /* Add colours and groups here */
     :root {
-      --brand: #5DCEAF;      /* teal */
-      --brand-dark: #47a88c; /* teal hover */
-      --secondary: #C830CC;  /* purple */
-      --teritary: #ED7D31;   /* orange */
-      --indigo: rgb(70,62,144);
+      --brand: #2AA889;
+      --brand-dark: #1E7C66;
+      --ink: #0F172A;
+      --mist: #E8F1F6;
+      --sand: #FFF4DE;
     }
-    .bg-brand        { background-color: var(--brand); }
-    .bg-brand-dark   { background-color: var(--brand-dark); }
-    .text-brand      { color: var(--brand); }
-    .bg-secondary    { background-color: var(--secondary); }
-    .text-secondary  { color: var(--secondary); }
-    .text-teritary   { color: var(--teritary); }
-    .border-brand    { border-color: var(--brand); }
-    .border-secondary { border-color: var(--secondary); }
-    .bg-secondary-dark { background-color: #a626a9; }
-  </style>
 
-<!-- Formatting styles -->
-  <style>
     html {
       color-scheme: light;
-      background-color: #f9fafb;
+      background-color: #f6f7f4;
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: #f9fafb;
+      font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(42, 168, 137, 0.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(232, 241, 246, 0.85), transparent 30%),
+        linear-gradient(180deg, #f8fafc 0%, #f5f7f3 100%);
     }
 
     ::selection {
-      background: rgba(93, 206, 175, 0.32);
-      color: #111827;
+      background: rgba(42, 168, 137, 0.22);
+      color: #0f172a;
     }
 
     a,
@@ -61,8 +86,8 @@
     textarea,
     select {
       color-scheme: light;
-      background-color: #ffffff;
-      color: #111827;
+      background-color: #fff;
+      color: #0f172a;
     }
 
     input::placeholder,
@@ -72,181 +97,162 @@
     }
 
     .site-card {
-      background-color: #ffffff;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(14px);
     }
 
-    .heading-1 {
-      font-size: 1.875rem; /* text-3xl */
-      font-weight: 700;    /* font-bold */
-      margin-bottom: 1rem; /* mb-4 */
-      color: #111827;      /* gray-900 */
+    .hero-panel {
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.92)),
+        radial-gradient(circle at top right, rgba(42, 168, 137, 0.30), transparent 38%);
     }
-    /* No dark mode overrides; keep light theme consistent */
-    
-    .heading-2 {
-      font-size: 1.875rem;   /* text-2xl */
-      font-weight: 700;    /* font-semibold */
-      margin-bottom: 0.75rem;
-      color: var(--secondary);      /* brand purple */
+
+    .eyebrow {
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #2aa889;
     }
-    /* Keep brand purple in all themes */
-    
-    .heading-3 {
-      font-size: 1.25rem;  /* text-xl */
-      font-weight: 500;    /* font-medium */
-      margin-bottom: 0.5rem;
-      color: #374151;      /* gray-700 */
+
+    .section-title {
+      font-family: "Fraunces", ui-serif, Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      color: #0f172a;
     }
-    
-    .body-text {
-      color: #374151;      /* gray-700 */
-      margin-bottom: 1rem;
-      line-height: 1.625;  /* leading-relaxed */
+
+    .section-subtitle {
+      color: #475569;
+      font-size: 1.05rem;
+      line-height: 1.8;
     }
-    
-    .list-default {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
-      color: #374151;
-      line-height: 1.625;
+
+    .section-shell {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
     }
-    
-    .quote {
-      border-left: 4px solid var(--brand, #5DCEAF);
-      padding-left: 1rem;
-      font-style: italic;
-      color: #4b5563; /* gray-600 */
-      margin-bottom: 1.5rem;
+
+    .pill {
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(255, 255, 255, 0.76);
+      color: #0f172a;
     }
-    
-    hr {
-      margin: 2rem 0;
-      border-color: #e5e7eb; /* gray-200 */
+
+    .grid-outline > div {
+      position: relative;
     }
-    
+
+    .grid-outline > div::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      padding: 1px;
+      background: linear-gradient(145deg, rgba(42, 168, 137, 0.22), rgba(15, 23, 42, 0.05));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+<body class="text-slate-900 flex min-h-screen flex-col">
 
-  <!-- Navbar -->
-  <header class="bg-white/95 shadow-sm sticky top-0 z-30 backdrop-blur">
-    <nav class="max-w-7xl mx-auto flex justify-between items-center gap-4 p-4">
-      <a href="/" class="text-xl font-bold text-indigo-600">Empathetics</a>
-      <div class="flex items-center gap-6">
-        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-          <a href="/" class="hover:text-indigo-600">Home</a>
-          <a href="/clinichat/" class="hover:text-indigo-600">CliniChat</a>
+  <header class="sticky top-0 z-30 border-b border-white/60 bg-white/80 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
+      <a href="/" class="flex items-center gap-3 text-slate-900">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-ink text-lg font-bold text-white">E</span>
+        <span>
+          <span class="block text-base font-extrabold tracking-tight">{{ sc.siteName }}</span>
+          <span class="hidden text-xs font-medium text-slate-500 sm:block">Professional simulation practice and feedback</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-4 sm:gap-6">
+        <div class="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex">
+          <a href="/" class="transition hover:text-slate-900">Home</a>
+          <a href="/platform/" class="transition hover:text-slate-900">Platform</a>
+          <a href="/#sectors" class="transition hover:text-slate-900">Sectors</a>
+          <a href="/#pilot" class="transition hover:text-slate-900">Pilots</a>
         </div>
-        <a href="mailto:hello@playfulhealth.com.au?subject=Empathetics%20Enquiry"
-           class="inline-flex items-center rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
-          Contact Us
+        <a href="{{ sc.pilotUrl }}"
+           class="inline-flex items-center rounded-full bg-brand px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
+          Discuss a Pilot
         </a>
-        <!-- <a href="https://clinichat.empathetics.ai/"
-           class="inline-flex items-center rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
-          Try CliniChat Free
-        </a> -->
       </div>
     </nav>
   </header>
 
-  <!-- Page content -->
-  <main class="flex-1 max-w-7xl mx-auto w-full p-6">
-        {{ content }}
+  <main class="mx-auto flex-1 w-full max-w-7xl px-6 pb-10 pt-6">
+    {{ content }}
   </main>
 
-<!-- ========== FOOTER ========== -->
-<footer class="mt-auto bg-gray-900 w-full">
-  <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
+  <footer class="mt-auto w-full bg-ink text-white">
+    <div class="mx-auto w-full max-w-7xl px-6 py-16">
+      <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div>
+          <a href="/" class="inline-flex items-center gap-3 text-lg font-bold tracking-tight">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10">E</span>
+            <span>{{ sc.siteName }}</span>
+          </a>
+          <p class="mt-4 max-w-md text-sm leading-7 text-slate-300">
+            {{ sc.siteName }} is a simulation practice and feedback platform for professional education providers, built to support curriculum-aligned pilots and scaled institutional delivery.
+          </p>
+          <p class="mt-4 text-sm font-semibold text-brand-soft">
+            Health is the lead domain today, with the same infrastructure extending to law and broader professional practice.
+          </p>
+        </div>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-      <!-- Brand -->
-      <div class="col-span-full lg:col-span-1">
-        <a href="/" class="flex-none text-xl font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Empathetics">
-          Empathetics
-        </a>
-        <p class="mt-2 text-sm text-gray-400">
-          AI-powered clinical learning experiences for health education and training.
+        <div>
+          <h4 class="text-sm font-extrabold uppercase tracking-[0.22em] text-slate-400">Explore</h4>
+          <div class="mt-4 grid gap-3 text-sm text-slate-300">
+            <a href="/" class="transition hover:text-white">Home</a>
+            <a href="/platform/" class="transition hover:text-white">Platform overview</a>
+            <a href="/#sectors" class="transition hover:text-white">Priority sectors</a>
+            <a href="/clinichat/" class="transition hover:text-white">Legacy demo route</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-extrabold uppercase tracking-[0.22em] text-slate-400">Teams We Help</h4>
+          <div class="mt-4 grid gap-3 text-sm text-slate-300">
+            <p>Program leads</p>
+            <p>Learning designers</p>
+            <p>Simulation leads</p>
+            <p>Professional education teams</p>
+          </div>
+        </div>
+
+        <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <h4 class="text-sm font-extrabold uppercase tracking-[0.22em] text-slate-400">Start a Conversation</h4>
+          <p class="mt-4 text-sm leading-7 text-slate-300">
+            For pilot discussions, institutional demos, or partnership enquiries, email the team directly.
+          </p>
+          <div class="mt-5 flex flex-col gap-3 text-sm">
+            <a href="mailto:{{ sc.contactEmail }}" class="inline-flex items-center rounded-full border border-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/10">
+              {{ sc.contactEmail }}
+            </a>
+            <a href="mailto:{{ sc.founderEmail }}" class="inline-flex items-center rounded-full border border-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/10">
+              {{ sc.founderEmail }}
+            </a>
+            <a href="{{ sc.pilotUrl }}" class="inline-flex items-center justify-center rounded-full bg-brand px-4 py-3 font-bold text-white transition hover:bg-brand-dark">
+              Discuss an institutional pilot
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          © 2026 {{ sc.siteName }} by {{ sc.companyName }}. All rights reserved.
+        </p>
+        <p>
+          {{ sc.siteUrl }}
         </p>
       </div>
-
-      <!-- Product Features -->
-      <div class="col-span-1">
-        <h4 class="font-semibold text-gray-100">Explore</h4>
-        <div class="mt-3 grid space-y-3">
-          <p><a href="/" class="text-gray-400 hover:text-gray-200">Home</a></p>
-          <p><a href="/clinichat/" class="text-gray-400 hover:text-gray-200">CliniChat</a></p>
-          <!-- <p><a href="/#features" class="text-gray-400 hover:text-gray-200">Features</a></p>
-          <p><a href="/#embed" class="text-gray-400 hover:text-gray-200">Teaching</a></p> -->
-        </div>
-      </div>
-
-      <!-- Company / Partnerships -->
-      <!-- <div class="col-span-1">
-        <h4 class="font-semibold text-gray-100">Access</h4>
-        <div class="mt-3 grid space-y-3">
-          <p><a href="https://clinichat.empathetics.ai" class="text-gray-400 hover:text-gray-200">Try CliniChat</a></p>
-          <p><a href="mailto:hello@playfulhealth.com.au?subject=Empathetics%20Enquiry" class="text-gray-400 hover:text-gray-200">Enquire About Empathetics</a></p>
-          <p><a href="mailto:hello@playfulhealth.com.au" class="text-gray-400 hover:text-gray-200">Contact</a></p>
-        </div>
-      </div> -->
-
-      <!-- Subscribe -->
-      <div class="col-span-2">
-        <h4 class="font-semibold text-gray-100">Stay in the loop</h4>
-
-        <form action="https://clinichat.empathetics.ai/public/eoi" method="POST">
-          <div class="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2">
-
-            <!-- (hidden on purpose) -->
-            <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden">
-
-            <div class="w-full">
-              <label for="subscribe-email" class="sr-only">Email</label>
-              <input
-                type="email"
-                id="subscribe-email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                class="block w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 shadow-none sm:text-sm sm:py-3 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:opacity-50"
-              >
-            </div>
-
-            <button
-              type="submit"
-              class="inline-flex w-full items-center justify-center gap-x-2 whitespace-nowrap rounded-lg border border-transparent bg-brand p-3 text-sm font-medium text-white transition hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:w-auto">
-              Subscribe
-            </button>
-          </div>
-
-          <p class="mt-3 text-sm text-gray-400">
-            Occasional updates on new cases, releases, and product news. No spam.
-          </p>
-        </form>
-      </div>
-
     </div>
-    <!-- End Grid -->
-
-    <!-- Bottom -->
-    <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-between items-center gap-y-4">
-      <p class="text-sm text-gray-400">
-        © 2026 Empathetics by Playful Health Pty Ltd. All rights reserved.
-      </p>
-
-      <!-- Social Icons -->
-      <div class="flex gap-2">
-        <a href="mailto:hello@playfulhealth.com.au" class="inline-flex items-center rounded-lg border border-white/10 px-3 py-2 text-sm text-white hover:bg-white/10">
-          hello@playfulhealth.com.au
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- ========== END FOOTER ========== -->
+  </footer>
 </body>
 </html>
