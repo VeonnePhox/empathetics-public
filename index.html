@@ -1,160 +1,459 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empathetics — Deliberate practice, at scale</title>
+<link rel="icon" type="image/png" href="/media/logos/empathetics-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#5DCEAF;
+    --brand-dark:#3f9c85;
+    --secondary:#C830CC;
+    --tertiary:#ED7D31;
+    --indigo:#463E90;
+    --indigo-deep:#2E2860;
+    --ink:#181A2A;
+    --ink-soft:#4A4B5C;
+    --paper:#FAFAF8;
+    --paper-dim:#F1F0EE;
+    --section-tint:#F6F1E8;
+    --line:#E4E2DD;
+    --white:#FFFFFF;
+    --serif:'Newsreader', serif;
+    --sans:'IBM Plex Sans', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px;}
+  section{padding:96px 0;}
+  @media (max-width:720px){ section{padding:64px 0;} }
 
-<section class="relative overflow-hidden rounded-[2rem] bg-gray-900 px-6 py-24 text-white sm:px-10">
-  <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2000&auto=format&fit=crop"
-       alt="Empathetics simulation"
-       class="absolute inset-0 h-full w-full object-cover opacity-25">
+  h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;color:var(--indigo-deep);}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-dark);display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--brand-dark);}
+  p{color:var(--ink-soft);margin:0;}
 
-  <div class="relative z-10 max-w-3xl">
-    <p class="mb-4 text-sm font-semibold tracking-[0.2em] text-brand">
-      Feedback-driven, dynamic clinical learning, made accessible
-    </p>
-    <h1 class="mb-6 text-4xl font-bold sm:text-5xl">
-      Empathetics.ai
-    </h1>
-    <p class="mb-8 max-w-2xl text-lg text-gray-100">
-      Create virtual patients, tutors, and assessment tasks with real-time feedback within your current teaching ecosystem.
-    </p>
-    <div class="flex flex-wrap gap-4">
-      <a href="https://clinichat.empathetics.ai"
-         class="inline-flex items-center rounded-lg border border-white/30 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
-        Try CliniChat
-      </a>
-      <a href="#educators"
-         class="inline-flex items-center rounded-lg bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-dark">
-        Explore Empathetics
-      </a>
+  header{position:sticky;top:0;z-index:50;background:rgba(250,250,248,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;max-width:1160px;margin:0 auto;}
+  .logo{font-family:'Arial Rounded MT Bold','Fredoka',var(--sans);font-weight:700;font-size:21px;color:var(--indigo-deep);text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:-.01em;}
+  .logo-mark{width:26px;height:auto;display:block;flex-shrink:0;}
+  .nav-cta{font-size:14.5px;font-weight:600;padding:11px 20px;margin:4px 0;border-radius:100px;background:var(--indigo-deep);color:#fff;text-decoration:none;transition:background .15s, transform .15s;}
+  .nav-cta:hover{background:var(--indigo);transform:translateY(-1px);}
+
+  .hero{padding-top:88px;padding-bottom:80px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(40px,6vw,66px);line-height:1.02;letter-spacing:-.01em;position:relative;}
+  .hero .accent-word{position:relative;display:inline-block;}
+  .hero .accent-word svg{position:absolute;left:0;top:100%;width:100%;height:22px;}
+  .hero p.lede{font-size:19px;line-height:1.55;color:var(--ink-soft);max-width:46ch;margin-top:24px;}
+  .hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:13px 24px;border-radius:100px;text-decoration:none;transition:transform .15s, box-shadow .15s, background .15s;border:1px solid transparent;}
+  .btn-primary{background:var(--brand);color:var(--indigo-deep);}
+  .btn-primary:hover{background:var(--brand-dark);color:#fff;transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:transparent;}
+  .btn-ghost:hover{border-color:var(--indigo);color:var(--indigo-deep);}
+
+  .trace-panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;font-family:var(--mono);font-size:13px;color:var(--ink-soft);box-shadow:0 20px 60px -30px rgba(46,40,96,.35);position:relative;}
+  .trace-panel .line{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--paper-dim);align-items:flex-start;}
+  .trace-panel .line:last-child{border-bottom:none;}
+  .trace-panel .speaker{color:var(--indigo);font-weight:600;flex-shrink:0;width:64px;}
+  .trace-panel .note{margin-top:6px;font-size:11.5px;padding:3px 9px;border-radius:6px;display:inline-flex;gap:6px;align-items:center;opacity:0;transform:translateY(4px);animation:fadeUp .5s ease forwards;}
+  .note.good{background:rgba(93,206,175,.15);color:var(--brand-dark);}
+  .note.flag{background:rgba(237,125,49,.14);color:var(--tertiary);}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+  .trace-panel .tag{position:absolute;top:-11px;right:20px;background:var(--secondary);color:#fff;font-size:10.5px;letter-spacing:.05em;padding:4px 10px;border-radius:100px;text-transform:uppercase;}
+  .scenario-chips{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:var(--white);border:1px solid var(--line);border-radius:8px;padding:9px 14px;}
+  .chip strong{color:var(--indigo-deep);font-weight:600;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  @media (max-width:800px){ .split{grid-template-columns:1fr;} }
+  .split > div{padding:44px 40px;}
+  .split .problem{background:var(--white);border-right:1px solid var(--line);}
+  @media (max-width:800px){ .split .problem{border-right:none;border-bottom:1px solid var(--line);} }
+  .split .solution{background:var(--indigo-deep);color:#fff;}
+  .split .solution h3, .split .solution p{color:#fff;}
+  .split .solution .eyebrow{color:var(--brand);}
+  .split .solution .eyebrow::before{background:var(--brand);}
+  .split h3{font-size:26px;margin-bottom:14px;}
+  .split p{font-size:15.5px;line-height:1.65;}
+  .split ul{margin:20px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .split li{font-size:14.5px;padding-left:20px;position:relative;color:var(--ink-soft);}
+  .split .solution li{color:rgba(255,255,255,.85);}
+  .split li::before{content:"—";position:absolute;left:0;color:var(--tertiary);}
+  .split .solution li::before{color:var(--brand);}
+
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.01em;}
+  .section-head p{margin-top:14px;font-size:16.5px;}
+
+  /* ---- feature story (legacy, still used if needed) ---- */
+  .feature-story{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:34px;align-items:start;}
+  .feature-story.feature-story--reverse{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);}
+  .feature-copy{padding-top:10px;}
+  .feature-points{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+  .feature-points li{padding:16px 18px;background:var(--white);border:1px solid var(--line);border-radius:16px;font-size:15px;line-height:1.55;color:var(--ink-soft);box-shadow:0 16px 40px -34px rgba(24,26,42,.22);}
+  .feature-points strong{display:block;color:var(--indigo-deep);font-size:16px;font-weight:600;margin-bottom:4px;}
+  .feature-visual{min-width:0;}
+  @media (max-width:980px){
+    .feature-story, .feature-story.feature-story--reverse{grid-template-columns:1fr;}
+    .feature-copy{padding-top:0;}
+  }
+
+  /* ---- feature block: single-visual, two-point sections ---- */
+  .feature-block{}
+  .feature-block--tinted{background:var(--section-tint);}
+  .feature-block-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .feature-block-grid--reverse .feature-block-visual{order:1;}
+  .feature-block-grid--reverse .feature-block-copy{order:2;}
+  @media (max-width:900px){
+    .feature-block-grid, .feature-block-grid--reverse{grid-template-columns:1fr;gap:40px;}
+    .feature-block-grid--reverse .feature-block-visual{order:0;}
+    .feature-block-grid--reverse .feature-block-copy{order:1;}
+  }
+  .feature-block-copy h2{font-size:clamp(28px,3.6vw,38px);letter-spacing:-.01em;margin-bottom:16px;}
+  .fb-lede{font-size:16.5px;line-height:1.65;max-width:44ch;}
+  .mini-points{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .mini-points li{display:flex;gap:12px;font-size:15px;color:var(--ink-soft);line-height:1.5;padding-left:0;}
+  .mini-points li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand);flex-shrink:0;margin-top:7px;}
+  .feature-block-visual{display:flex;justify-content:center;}
+  .device-frame.standalone{transform:rotate(-1.2deg);}
+  .feature-block-grid--reverse .device-frame.standalone{transform:rotate(1.2deg);}
+  .device-frame.phone.standalone{width:260px;}
+  .device-frame.tablet.standalone{width:560px;}
+
+  .carousel-card{border:1px solid var(--line);border-radius:22px;background:var(--white);box-shadow:0 28px 70px -48px rgba(24,26,42,.35);overflow:hidden;}
+  .carousel-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:22px 24px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg, rgba(93,206,175,.08), rgba(255,255,255,0)), var(--white);}
+  .carousel-head h3{font-family:var(--sans);font-size:20px;font-weight:600;color:var(--indigo-deep);margin-bottom:6px;}
+  .carousel-head p{font-size:13.5px;max-width:36ch;}
+  .carousel-controls{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .carousel-btn{width:40px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--white);color:var(--indigo-deep);font-size:16px;line-height:1;cursor:pointer;transition:background .15s, border-color .15s, transform .15s;}
+  .carousel-btn:hover{background:var(--paper-dim);border-color:#d2cfca;transform:translateY(-1px);}
+  .carousel-viewport{position:relative;background:radial-gradient(circle at top left, rgba(93,206,175,.12), transparent 28%), radial-gradient(circle at bottom right, rgba(200,48,204,.10), transparent 34%), var(--paper);}
+  .carousel-slide{display:none;}
+  .carousel-slide.active{display:block;}
+  .carousel-stage{display:flex;justify-content:center;padding:30px 24px 6px;}
+  .carousel-copy{padding:16px 24px 26px;background:var(--white);}
+  .carousel-kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--secondary);margin-bottom:10px;}
+  .carousel-kicker::before{content:"";width:14px;height:1px;background:currentColor;}
+  .carousel-copy strong{display:block;font-family:var(--sans);font-size:17px;font-weight:600;color:var(--indigo-deep);margin-bottom:6px;}
+  .carousel-copy p{font-size:14px;line-height:1.6;}
+  .carousel-dots{display:flex;align-items:center;gap:8px;padding:0 24px 22px;background:var(--white);}
+  .carousel-dot{width:9px;height:9px;padding:0;border:0;border-radius:999px;background:#d7d4cf;cursor:pointer;transition:transform .15s, background .15s;}
+  .carousel-dot.active{background:var(--indigo);transform:scale(1.15);}
+
+  /* ---- device frames: tablet (educator/browser) + phone (student) ---- */
+  .device-frame{margin:0 auto;}
+  .device-frame.tablet{max-width:100%;width:480px;background:#17161a;border-radius:18px;padding:11px 11px 15px;box-shadow:0 26px 60px -30px rgba(24,26,42,.5);}
+  .device-frame.tablet .device-cam{width:5px;height:5px;border-radius:50%;background:#3d3c41;margin:0 auto 8px;}
+  .device-frame.tablet .device-screen{background:#fff;border-radius:8px;overflow:hidden;}
+  .device-browser-bar{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#EFEDE8;border-bottom:1px solid #e2dfda;}
+  .device-browser-bar .dot{width:7px;height:7px;border-radius:50%;background:#d3d0ca;flex-shrink:0;}
+  .device-browser-bar .url{flex:1;background:#fff;border:1px solid #e2dfda;border-radius:100px;padding:3px 12px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-left:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .device-frame.tablet img{width:100%;display:block;}
+
+  .device-frame.phone{width:210px;max-width:100%;background:#141317;border-radius:30px;padding:9px;box-shadow:0 22px 50px -28px rgba(24,26,42,.5);}
+  .device-frame.phone .device-screen{border-radius:22px;overflow:hidden;background:#fff;}
+  .device-frame.phone img{width:100%;display:block;}
+
+  .workflow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+  .workflow li{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line);}
+  .workflow li:last-child{border-bottom:1px solid var(--line);}
+  .workflow .num{font-family:var(--serif);font-size:34px;color:var(--brand-dark);font-weight:500;}
+  .workflow h4{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--indigo-deep);margin:0 0 6px;}
+  .workflow p{font-size:15px;max-width:56ch;}
+
+  .examples-head{max-width:none;}
+  .examples-head-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+  .examples-head-row p{margin-top:0;max-width:none;}
+  .examples-head-row a{justify-self:end;font-size:14px;font-weight:600;color:var(--indigo);text-decoration:none;white-space:nowrap;}
+  .examples-head-row a:hover{color:var(--brand-dark);}
+  .examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  @media (max-width:920px){ .examples{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  @media (max-width:640px){
+    .examples-head-row{gap:14px;}
+    .examples{grid-template-columns:1fr;}
+  }
+  .example-card{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--white);display:flex;flex-direction:column;gap:14px;transition:border-color .15s, transform .15s;}
+  .example-card:hover{border-color:var(--brand);transform:translateY(-2px);}
+  .example-card .filetag{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--secondary);background:rgba(200,48,204,.08);width:fit-content;padding:4px 10px;border-radius:6px;}
+  .example-card h4{font-size:16px;margin:0;color:var(--indigo-deep);font-family:var(--sans);font-weight:600;}
+  .example-card p{font-size:14px;}
+  .example-card a{margin-top:auto;font-size:14px;font-weight:600;color:var(--indigo);text-decoration:none;display:flex;align-items:center;gap:6px;}
+  .example-card a:hover{color:var(--brand-dark);}
+
+  .gateway{background:var(--indigo-deep);border-radius:20px;padding:64px 56px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+  .gateway::before{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(93,206,175,.35), transparent 70%);}
+  .gateway::after{content:"";position:absolute;left:-40px;bottom:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle, rgba(200,48,204,.25), transparent 70%);}
+  .gateway h2{color:#fff;font-size:clamp(26px,3.6vw,34px);max-width:480px;position:relative;}
+  .gateway p{color:rgba(255,255,255,.75);margin-top:12px;max-width:440px;font-size:15.5px;position:relative;}
+  .gateway .btn-primary{position:relative;}
+
+  .audience{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  @media (max-width:820px){ .audience{grid-template-columns:repeat(2,1fr);} }
+  .audience > div{background:var(--white);padding:30px 24px;}
+  .audience h4{font-family:var(--sans);font-size:15.5px;font-weight:600;color:var(--indigo-deep);margin:0 0 8px;}
+  .audience p{font-size:13.5px;}
+  .audience .dot{width:8px;height:8px;border-radius:50%;margin-bottom:14px;}
+  .audience-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .audience-icon svg{width:20px;height:20px;}
+
+  footer{border-top:1px solid var(--line);padding:56px 0 40px;}
+  .footer-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+  footer .logo{margin-bottom:10px;}
+  .foot-desc{font-size:14px;max-width:34ch;color:var(--ink-soft);}
+  .foot-cols{display:flex;gap:64px;}
+  .foot-col h5{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 14px;}
+  .foot-col a{display:block;font-size:14px;color:var(--ink);text-decoration:none;margin-bottom:9px;}
+  .foot-col a:hover{color:var(--indigo);}
+  .foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .note{animation:none;opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#top"><img class="logo-mark" src="/media/logos/empathetics-icon.png" alt="Empathetics icon">Empathetics</a>
+    <a class="nav-cta" href="mailto:hello@empathetics.ai">Email us</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">AI powered virtual patients and tutors</div>
+        <h1>Practice makes<br><span class="accent-word">competence<svg viewBox="0 0 220 22" fill="none"><path d="M2 14C40 4 90 4 218 16" stroke="#ED7D31" stroke-width="3" stroke-linecap="round"/></svg></span>.</h1>
+        <p class="lede">Enhance your teaching with virtual conversations with patients, supervisors, or anyone your student needs to communicate with.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#try-it">Try a scenario →</a>
+          <a class="btn btn-ghost" href="#contact">Talk to us</a>
+        </div>
+      </div>
+      <div>
+        <div class="trace-panel reveal" id="hero-panel">
+          <span class="tag">Immediate feedback</span>
+          <div class="line"><span class="speaker">Student</span><span>"So, how long has the pain been going on for?"</span></div>
+          <div class="line"><span class="speaker">Client</span><span>"About three weeks now, it's worse at night."</span></div>
+          <div class="line"><span class="speaker">Feedback</span>
+            <div>
+              <span class="note good" style="animation-delay:.3s">Rubric: rapport and question flow were strong</span><br>
+              <span class="note good" style="animation-delay:.55s">Rubric: explored aggravating and easing factors clearly</span><br>
+              <span class="note flag" style="animation-delay:.8s">Next attempt: ask about pain severity and functional impact earlier</span>
+            </div>
+          </div>
+          <div class="line"><span class="speaker">Repeat</span><span>Try again now and improve your score on the next attempt.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM / SOLUTION -->
+  <section id="problem" class="feature-block--tinted">
+    <div class="wrap">
+      <div class="split reveal">
+        <div class="problem">
+          <div class="eyebrow">Learning needs practice</div>
+          <h3>Traditional teaching methods don't scale practice.</h3>
+          <p>Critical reasoning and professional communication are mastered by doing: conducting an interview, asking the right questions, and responding efficiently. But instructor-led, supervised practice is resource-intensive and hard to scale.</p>
+          <ul>
+            <li>Class sizes outgrow the staff who can give feedback</li>
+            <li>Placement and simulation time is limited and costly</li>
+            <li>Feedback often arrives too late to change behaviour</li>
+          </ul>
+        </div>
+        <div class="solution">
+          <div class="eyebrow">Practice made easy</div>
+          <h3>Empathetics scales practice.</h3>
+          <p>Build simulated interviews and interactions from your own course material. Let students practise and get feedback as a self-paced learning activity — by text or voice.</p>
+          <ul>
+            <li>Self-paced, realistic practice for every learner</li>
+            <li>Automatic, rubric-based feedback on every attempt</li>
+            <li>A usage dashboard showing attempts, completion, and cohort progress</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSATION -->
+  <section id="product" class="feature-block">
+    <div class="wrap feature-block-grid">
+      <div class="feature-block-copy reveal">
+        <div class="eyebrow">Real conversations</div>
+        <h2>Students talk or messages. It responds — by voice or text.</h2>
+        <p class="fb-lede">No multiple choice, no canned branching dialogue. Get students into an actual conversation, and Empathetics will respond like the patient, client, or tutor it's built to simulate.</p>
+        <ul class="mini-points">
+          <li>Near-real-time voice conversation, with transcription</li>
+          <li>Or text-based messaging if that suits the task better</li>
+          <li>Automatically give individualised, rubric-based feedback after conversation</li>
+        </ul>
+      </div>
+      <div class="feature-block-visual reveal">
+        <div class="device-frame phone standalone">
+          <div class="device-screen"><img src="/media/images/embedded/embedded-image-01.png" alt="Student having a live voice conversation with a simulated patient, with transcript shown alongside"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NO-CODE BUILDER -->
+  <section id="workflow" class="feature-block feature-block--tinted">
+    <div class="wrap feature-block-grid feature-block-grid--reverse">
+      <div class="feature-block-visual reveal">
+        <div class="device-frame tablet standalone">
+          <div class="device-cam"></div>
+          <div class="device-screen">
+            <div class="device-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">demo.empathetics.ai/simulations/builder</span></div>
+            <img src="/media/images/embedded/embedded-image-02.jpg" alt="Case prompt editor showing AI-assisted Improve and Generate buttons for building a simulation without code">
+          </div>
+        </div>
+      </div>
+      <div class="feature-block-copy reveal">
+        <div class="eyebrow">No-code builder</div>
+        <h2>Describe your case. Empathetics builds the simulation.</h2>
+        <p class="fb-lede">No developers, no scripting. Write your case, rubric, and learning objective into a form, to create an authetnic virtual experience.</p>
+        <ul class="mini-points">
+          <li>Start from a case, a rubric, or a learning objective</li>
+          <li>Improve or generate the case prompt with built-in AI assist</li>
+          <li>Assign it to a group and track attempts as they happen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRY IT YOURSELF -->
+  <section id="try-it">
+    <div class="wrap">
+      <div class="section-head examples-head reveal">
+        <div class="eyebrow">Try it yourself</div>
+        <h2>Course materials, transformed</h2>
+        <div class="examples-head-row">
+          <p>See how Empathetics integrates to traditional learning materials seamlessly by downloading one of the examples below. You will require a valid account - please see the PDF instructions.</p>
+          <a href="/media/files/Empathetics-how-to-register.pdf" download="Empathetics-how-to-register.pdf">Download instructions (PDF) ↓</a>
+        </div>
+      </div>
+      <div class="examples reveal">
+        <div class="example-card">
+          <span class="filetag">PDF · Anatomy tutorial</span>
+          <h4>Workbook integration</h4>
+          <p>An existing anatomy practical worksheet, with a virtual tutor embedded to check answers and quiz students on the spot.</p>
+          <a href="/media/files/Empathetics-example-workbook-integration.pdf" download="Empathetics-example-workbook-integration.pdf">Download the workbook (PDF) ↓</a>
+        </div>
+        <div class="example-card">
+          <span class="filetag">PDF · Reasoning practice</span>
+          <h4>Short-response question tutor</h4>
+          <p>Students explain the biomechanics of a muscle group in their own words, then practise talking it through with a virtual tutor.</p>
+          <a href="/media/files/Empathetics-example-short-response-tutor.pdf" download="Empathetics-example-short-response-tutor.pdf">Download the task (PDF) ↓</a>
+        </div>
+        <div class="example-card">
+          <span class="filetag">PDF · Legal case</span>
+          <h4>Client and supervisor simulation</h4>
+          <p>A probate matter run as two linked simulations: interview the client, then brief a supervising solicitor who only responds by message.</p>
+          <a href="/media/files/Empathetics-example-legal-client-supervisor.pdf" download="Empathetics-example-legal-client-supervisor.pdf">Download the case (PDF) ↓</a>
+        </div>
+        <div class="example-card">
+          <span class="filetag">PDF · Virtual patient</span>
+          <h4>Clinical reasoning — physiotherapy</h4>
+          <p>Jake, 23, presents with lower back pain. Students run a subjective interview, screen for red flags, and make a recommendation.</p>
+          <a href="/media/files/Empathetics-example-virtual-patient-lbp.pdf" download="Empathetics-example-virtual-patient-lbp.pdf">Download the case (PDF) ↓</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section id="audience" class="feature-block--tinted">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Built for</div>
+        <h2>Educators, across disciplines</h2>
+        <p>Empathetics is designed for educators teaching adult learners irrespective of your discipline - clinical, legal, or otherwise.</p>
+      </div>
+      <div class="audience reveal">
+        <div><div class="audience-icon" style="background:rgba(93,206,175,.14);color:var(--brand-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12.5V17c0 1.1 2.7 3 6 3s6-1.9 6-3v-4.5"/><path d="M22 10v6"/></svg></div><h4>Academics</h4><p>Elevate your science communication to the next level.</p></div>
+        <div><div class="audience-icon" style="background:rgba(200,48,204,.12);color:var(--secondary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><h4>Learning designers</h4><p>Translate existing course material into interactive practice without a development team.</p></div>
+        <div><div class="audience-icon" style="background:rgba(237,125,49,.14);color:var(--tertiary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1Z"/><path d="m9 13 2 2 4-4"/></svg></div><h4>Course coordinators</h4><p>Create consistent, feedback-drive practice for all of your students.</p></div>
+        <div><div class="audience-icon" style="background:rgba(70,62,144,.12);color:var(--indigo);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/><path d="M12 12v3"/></svg></div><h4>Program &amp; business managers</h4><p>Cost-effective answer to creating practice for secure assessments and delivering individualised feedback at scale.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top"><img class="logo-mark" src="/media/logos/empathetics-icon.png" alt="Empathetics icon">Empathetics</a>
+        <p class="foot-desc">AI-powered simulation and feedback for professional education, built by Playful Health.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Site</h5>
+          <a href="#problem">Why Empathetics</a>
+          <a href="#product">Student experience</a>
+          <a href="#workflow">Educator toolkit</a>
+          <a href="#try-it">Try it</a>
+        </div>
+        <div class="foot-col">
+          <h5>Get in touch</h5>
+          <a href="mailto:hello@empathetics.ai">hello@empathetics.ai</a>
+          <a href="#try-it">Try a scenario</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Empathetics by Playful Health Pty Ltd.</span>
+      <span>Brisbane, Australia</span>
     </div>
   </div>
-</section>
+</footer>
 
-<section id="educators" class="py-20">
-  <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-    <div class="site-card flex h-full flex-col rounded-2xl p-8">
-      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-secondary">For Educators</p>
-      <h2 class="mb-4 text-3xl font-bold text-gray-900">Deliver richer clinical learning experiences.</h2>
-      <p class="mb-6 text-gray-700">
-        Empathetics enables educator-authored virtual simulations and tutors designed around your teaching goals.
-      </p>
-      <ul class="list-default space-y-3">
-        <li>Custom virtual patient and scenario design</li>
-        <li>Interactive tutors and guided practice experiences</li>
-        <li>Flexible deployments for courses, training, and pilot programs</li>
-      </ul>
-      <a href="mailto:hello@playfulhealth.com.au?subject=Empathetics%20Enquiry"
-         class="mt-auto inline-flex w-2/3 self-center justify-center rounded-lg border border-brand px-5 py-3 font-semibold text-brand transition hover:bg-brand hover:text-green-800">
-        Enquire About Empathetics
-      </a>
-    </div>
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    <div class="site-card flex h-full flex-col rounded-2xl p-8">
-      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-secondary">For Students</p>
-      <h2 class="mb-4 text-3xl font-bold text-gray-900">CliniChat helps students practise clinical skills today.</h2>
-      <p class="mb-6 text-gray-700">
-        CliniChat is the public experience built on Empathetics, giving students a simple way to practise clinical communication, anatomy knowledge, and reasoning.
-      </p>
-      <ul class="list-default space-y-3">
-        <li>Free to join</li>
-        <li>Designed for independent student learning</li>
-        <li>A practical way to explore Empathetics in action</li>
-      </ul>
-      <a href="/clinichat/"
-         class="mt-auto inline-flex w-2/3 self-center justify-center rounded-lg bg-secondary px-5 py-3 font-semibold text-white transition hover:opacity-90">
-        Learn About CliniChat
-      </a>
-    </div>
-  </div>
-</section>
+  document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
+    const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
+    const prev = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    let index = 0;
+    const render = (i)=>{
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s,si)=>s.classList.toggle('active', si===index));
+      dots.forEach((d,di)=>d.classList.toggle('active', di===index));
+    };
+    prev && prev.addEventListener('click', ()=>render(index-1));
+    next && next.addEventListener('click', ()=>render(index+1));
+    dots.forEach((d,di)=>d.addEventListener('click', ()=>render(di)));
+    render(0);
+  });
+</script>
 
-<section id="features" class="py-20">
-  <div class="mx-auto max-w-6xl">
-    <div class="max-w-3xl">
-      <h2 class="heading-2">Meaningful and Reflective Learning</h2>
-      <p class="text-lg text-gray-700">
-        Empathetics is a no-code platform for integrating customisable AI learning into your curriculum.
-      </p>
-    </div>
-
-    <div class="mt-10 grid gap-6 md:grid-cols-3">
-      <div class="site-card rounded-2xl p-6">
-        <div class="mb-3 flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 shrink-0 text-brand">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-          </svg>          
-          <h3 class="text-xl font-semibold text-gray-900">Virtual Patients</h3>
-        </div>
-        <p class="text-gray-700">
-          Give students an on-demand simulated patient to practise history taking, clinical reasoning, communication, and follow-up conversations.
-        </p>
-      </div>
-      <div class="site-card rounded-2xl p-6">
-        <div class="mb-3 flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 shrink-0 text-brand">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-          </svg>          
-          <h3 class="text-xl font-semibold text-gray-900">Virtual Tutors</h3>
-        </div>
-        <p class="text-gray-700">
-          Support student learning with on-demand tutors that stay aligned to your course content and help with revision, self-testing, and reflection.
-        </p>
-      </div>
-      <div class="site-card rounded-2xl p-6">
-        <div class="mb-3 flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 shrink-0 text-brand">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L6 12Zm0 0h7.5" />
-          </svg>
-          <h3 class="text-xl font-semibold text-gray-900">Submissions</h3>
-        </div>
-        <p class="text-gray-700">
-          Embed self-paced short-answer and voice submission tasks into your teaching with immediate feedback.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="embed" class="py-20">
-  <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
-    <div>
-      <h2 class="heading-2">Embed Seamlessly</h2>
-      <p class="mb-4 text-gray-700">
-        Integrate Empathetics into your existing teaching with educator-focused tools that fit naturally alongside your course resources.
-      </p>
-    </div>
-
-    <div class="site-card rounded-2xl p-8">
-      <div class="space-y-4">
-        <div class="flex items-center gap-4 rounded-xl border border-gray-200 px-5 py-4">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 shrink-0 text-brand">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-          </svg>
-          <span class="block">
-            <strong class="block text-gray-900">Embedded links</strong>
-            <span class="text-sm text-gray-600">Place short, shareable links into workbooks, practical notes, slides, and online modules so students can move straight into guided practice.</span>
-          </span>
-        </div>
-        <div class="flex items-center gap-4 rounded-xl border border-gray-200 px-5 py-4">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 shrink-0 text-brand">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h16.5m0 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
-          </svg>
-          <span class="block">
-            <strong class="block text-gray-900">Classroom mode</strong>
-            <span class="text-sm text-gray-600">Monitor class progress through an integrated dashboard designed for blended, flipped, and self-paced learning.</span>
-          </span>
-        </div>
-        <div class="flex items-center gap-4 rounded-xl border border-gray-200 px-5 py-4">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 shrink-0 text-brand">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.072M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.516-.645-6.376-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-          </svg>
-          <span class="block">
-            <strong class="block text-gray-900">Student management</strong>
-            <span class="text-sm text-gray-600">Import, organise, and monitor students with tools that make participation and progress easier to track.</span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</body>
+</html>
