@@ -208,6 +208,41 @@
   .audience-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
   .audience-icon svg{width:20px;height:20px;}
 
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--line);gap:1px;}
+  @media (max-width:720px){ .stats{grid-template-columns:1fr;} }
+  .stat{background:var(--white);padding:32px 30px;}
+  .stat-value{font-family:var(--serif);font-size:clamp(34px,4vw,48px);line-height:1;color:var(--indigo-deep);}
+  .stat-label{font-size:15px;font-weight:600;color:var(--indigo-deep);margin-top:12px;}
+  .stat-copy{font-size:13.5px;margin-top:6px;max-width:29ch;}
+
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
+  @media (max-width:860px){ .pricing{grid-template-columns:1fr;max-width:520px;} }
+  .pricing-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;}
+  .pricing-card.featured{border:2px solid var(--brand-dark);box-shadow:0 20px 50px -38px rgba(46,40,96,.45);position:relative;}
+  .pricing-badge{position:absolute;top:-13px;left:24px;background:var(--brand);color:var(--indigo-deep);font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;}
+  .pricing-card h3{font-family:var(--sans);font-weight:600;font-size:21px;}
+  .pricing-price{font-family:var(--serif);font-size:39px;line-height:1;color:var(--indigo-deep);margin-top:18px;}
+  .pricing-term{font-size:13px;color:var(--ink-soft);margin-top:4px;}
+  .pricing-card ul{list-style:none;padding:0;margin:26px 0;display:flex;flex-direction:column;gap:12px;}
+  .pricing-card li{font-size:14px;color:var(--ink-soft);padding-left:19px;position:relative;}
+  .pricing-card li::before{content:"✓";position:absolute;left:0;color:var(--brand-dark);font-weight:600;}
+  .pricing-note{font-size:12.5px;line-height:1.5;margin-top:auto;padding-top:18px;border-top:1px solid var(--line);}
+  .pricing-card .pricing-note + .pricing-note{margin-top:12px;padding-top:0;border-top:0;}
+  .pricing-card .btn{margin-top:22px;justify-content:center;}
+  .pricing--single{display:block;max-width:760px;margin:0 auto;}
+  .pricing--single .pricing-card{padding:38px;}
+  .pricing-card-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .pricing-card-actions .btn{margin-top:0;}
+  .credits-head{margin:52px 0 20px;}
+  .credits-head h3{font-size:25px;}
+  .credits-head p{margin-top:8px;font-size:15px;}
+  .credit-packs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:720px){ .credit-packs{grid-template-columns:1fr;} }
+  .credit-pack{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:22px 20px;}
+  .credit-pack h4{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--indigo-deep);margin:0;}
+  .credit-pack p{font-family:var(--serif);font-size:26px;color:var(--indigo-deep);margin-top:8px;}
+  .credit-pack small{display:block;color:var(--ink-soft);font-size:12.5px;margin-top:4px;}
+
   footer{border-top:1px solid var(--line);padding:56px 0 40px;}
   .footer-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;}
   footer .logo{margin-bottom:10px;}
@@ -232,7 +267,7 @@
 <header>
   <nav class="wrap">
     <a class="logo" href="#top"><img class="logo-mark" src="/media/logos/empathetics-icon.png" alt="Empathetics icon">Empathetics</a>
-    <a class="nav-cta" href="mailto:hello@empathetics.ai">Email us</a>
+    <a class="nav-cta" href="mailto:hello@empathetics.ai">Contact us</a>
   </nav>
 </header>
 
@@ -242,9 +277,9 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow">AI powered virtual patients and tutors</div>
-        <h1>Practice makes<br><span class="accent-word">competence<svg viewBox="0 0 220 22" fill="none"><path d="M2 14C40 4 90 4 218 16" stroke="#ED7D31" stroke-width="3" stroke-linecap="round"/></svg></span>.</h1>
-        <p class="lede">Enhance your teaching with virtual conversations with patients, supervisors, or anyone your student needs to communicate with.</p>
+        <div class="eyebrow">Authentic practice at scale.</div>
+        <h1>Every student deserves<br><span class="accent-word">more practice<svg viewBox="0 0 220 22" fill="none"><path d="M2 14C40 4 90 4 218 16" stroke="#ED7D31" stroke-width="3" stroke-linecap="round"/></svg></span>.</h1>
+        <p class="lede">Give every student more opportunities to practise conversations with virtual patients, supervisors, or tutors.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#try-it">Try a scenario →</a>
           <a class="btn btn-ghost" href="#contact">Talk to us</a>
@@ -400,6 +435,63 @@
     </div>
   </section>
 
+  <!-- SIMULATION AT A GLANCE -->
+  <section id="simulation-stats">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Designed for deliberate practice</div>
+        <h2>Short, focused conversations students can repeat.</h2>
+        <p>Create simulations for patient interviews, client conversations, supervisor briefings, and tutor-led practice. Give your learners a safe place to try, reflect, and try again.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="stat-value">10–15 min</div><div class="stat-label">Typical simulation duration</div><p class="stat-copy">A focused conversation that fits naturally into a tutorial, workshop, or independent study session.</p></div>
+        <div class="stat"><div class="stat-value">~ 5</div><div class="stat-label">Scenarios per week</div><p class="stat-copy">Embedded as part of weekly learning activities.</p></div>
+        <div class="stat"><div class="stat-value">100s</div><div class="stat-label">Opportunities to improve</div><p class="stat-copy">Students can revisit a scenario anytime, building confidence through repeated deliberate practice.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="feature-block--tinted">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Pilot Offer</div>
+        <h2>Explore virtual conversations with your students today!</h2>
+        <p></p>
+      </div>
+      <div class="pricing pricing--single reveal">
+        <article class="pricing-card featured">
+          <span class="pricing-badge">Pilot offer</span>
+          <div class="pricing-price">$3,600 AUD + GST</div>
+          <div class="pricing-term">12 months of platform access</div>
+          <ul>
+            <li>Create up to 30 simulation scenarios</li>
+            <li>Enroll up to 300 students</li>
+            <li>Access to the example case library</li>
+            <li>Dedicated team onboarding workshop</li>
+            <li>Standard implementation support</li>
+          </ul>
+          <!-- <p class="pricing-note">Simulations are created and managed by your institution in the platform. Custom simulation development by Empathetics is not included unless separately quoted.</p> -->
+          <p class="pricing-note">Fair use applies. Simulation usage is capped; additional usage can be purchased as needed.</p>
+          <div class="pricing-card-actions">
+            <a class="btn btn-primary" href="mailto:hello@empathetics.ai?subject=Start%20an%20Institutional%20Pilot">Request Pilot</a>
+            <!-- <a class="btn btn-ghost" href="mailto:hello@empathetics.ai?subject=Discuss%20Empathetics%20requirements">Discuss your requirements</a> -->
+          </div>
+        </article>
+      </div>
+      <!-- <div class="credits-head reveal">
+        <h3>Additional usage credits</h3>
+        <p>Additional credits can be purchased anytime.</p>
+      </div>
+      <div class="credit-packs reveal">
+        <div class="credit-pack"><h4>10,000 credits</h4><p>$300 + GST</p></div>
+        <div class="credit-pack"><h4>30,000 credits</h4><p>$750 + GST</p></div>
+        <div class="credit-pack"><h4>Larger volumes</h4><p>Contact us</p><small>Talk to us for tailored pricing.</small></div>
+      </div>
+      <p class="pricing-note reveal" style="max-width:760px;margin:24px auto 0;text-align:center;">Need custom simulation development, additional training or a larger rollout? <a href="mailto:hello@empathetics.ai?subject=Tailored%20Empathetics%20proposal">Contact us</a> for a tailored proposal.</p>
+    </div> -->
+  </section>
+
 </main>
 
 <footer id="contact">
@@ -416,6 +508,7 @@
           <a href="#product">Student experience</a>
           <a href="#workflow">Educator toolkit</a>
           <a href="#try-it">Try it</a>
+          <a href="#pricing">Pricing</a>
         </div>
         <div class="foot-col">
           <h5>Get in touch</h5>
